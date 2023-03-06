@@ -81,4 +81,14 @@ jobs:
 
   Import-to-test:
     uses: ./.github/workflows/import-to-test.yml
+    with:
+      #You can specify the solution name here
+      solution_name: DadAppSolution
+      #Update your values here
+      BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
+      TEST_ENVIRONMENT_URL: 'https://test-alm.crm.dynamics.com'
+      CLIENT_ID: 'f622aab3-a544-4bfe-892e-692ee608d459'
+      TENANT_ID: '8b46d3b4-b4ac-4e33-8e31-1ee00f0d9aab'      
+    secrets:
+      envSecret: ${{ secrets.PowerPlatformSPN }}
       
