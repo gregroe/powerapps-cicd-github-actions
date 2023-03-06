@@ -33,7 +33,7 @@ on:
         type: string
         required: true      
       TEST_ENVIRONMENT_URL: 
-        description: 'Production environment url.'
+        description: 'Test environment url.'
         type: string
         required: true
       CLIENT_ID: 
