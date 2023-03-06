@@ -112,7 +112,7 @@ jobs:
       with:
         name: managedSolutions
         path: ${{ inputs.solution_release_folder}}
-    - name: Import solution to prod env
+    - name: Import solution to test env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{inputs.TEST_ENVIRONMENT_URL}}
