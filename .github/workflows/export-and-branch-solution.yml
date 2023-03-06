@@ -80,6 +80,7 @@ jobs:
         allow-empty-commit: true
 
   Import-to-test:
+    needs: [ export-from-dev ]
     uses: ./.github/workflows/import-to-test.yml
     with:
       #You can specify the solution name here
