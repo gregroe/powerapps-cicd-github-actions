@@ -103,6 +103,7 @@ jobs:
         solution-type: 'Unmanaged'
         overwrite-files: true
     - name: git delete current dev branch
+      continue-on-error: true
       run: git branch -D ${{ vars.DEFAULTSOLUTION }}
       
     - name: branch-solution, prepare it for a PullRequest
