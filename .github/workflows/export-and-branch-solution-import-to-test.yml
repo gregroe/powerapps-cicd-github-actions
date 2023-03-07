@@ -1,6 +1,12 @@
 name: export-and-branch-solution-import-to-test
-# Export solution from ${{vars.DEVENVURL}} environment
-# 
+# This Action:
+# Exports Power Apps $DEFAULTSOLUTIOfrom $DEVENVURL dataverse dev environment
+# Create a development branch based on Main
+# Checks unpacked solution in to dev branch
+# rebuilds on $BUILD_ENVIRONMENT_URL build envirnment serer
+# imports managed $DEFAULTSOLUTION to $TEST_ENVIRONMETN_URL dataverse test environment
+# Create a pull request on the Development branch to check back into MAIN
+# to push to $PRODUCTION_ENVIRONMENT_URL,  Create a new Release, which will kick off the Release-Action
 
 on:
   workflow_dispatch:
