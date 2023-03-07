@@ -17,8 +17,11 @@ name: export-and-branch-solution-import-to-test
 #     copy the TenantID, AppID,Client-Secret
 # Create an Application User in each of the Dev,Test,Build,Prod environments with the Service Principal
 #     (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#application-user-creation)
-# Create a Github Repository Secret Named "PowerPlatformSPN".   copy the client-secret
+# Create a Github Repository Secret and copy the client-secret
 #     (https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
+#     
+#     PowerPlatformSPN
+#
 # Create the following Github Environment Variables and copy their respective values from your dataverse environment:
 #     (https://docs.github.com/en/actions/learn-github-actions/variables)
 #
@@ -26,7 +29,7 @@ name: export-and-branch-solution-import-to-test
 #     CLIENT_ID
 #     DEFAULTSOLUTION
 #     DEVENVURL
-#     PRODUCTION_ENFIRONMENT__URL
+#     PRODUCTION_ENVIRONMENT__URL
 #     TENANT_ID
 #     TEST_ENVIRONMENT_URL
 #     
