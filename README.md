@@ -1,5 +1,7 @@
 # Power Apps CICD with Github Actions
 
+This resuable solution uses GitHub Actions to create a CICD Process for your  Power Platform Solutions. The workflows automate exporting your solution from dev, checking souce into repo,importing to test. When you've tested, you create a pull request to push code changes from a development branch to the Main branch (golden version). Then when you want to push to production you creaate a "Release" and the latest souce in Main is pushed to Production
+
 
  ## Dev-Build-Test Process
 - runs export-and-branch-solution-import-to-test Action
