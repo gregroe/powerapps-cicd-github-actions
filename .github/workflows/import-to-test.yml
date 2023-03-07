@@ -92,6 +92,7 @@ jobs:
       with:
         name: managedSolutions
         path: ${{ inputs.solution_release_folder}}
+    
     - name: Import solution to test env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
@@ -99,6 +100,6 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.envSecret }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-file: ${{ inputs.solution_release_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
+        solution-file: ${{ inputs.solution_shipping_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
         publish-changes: true
