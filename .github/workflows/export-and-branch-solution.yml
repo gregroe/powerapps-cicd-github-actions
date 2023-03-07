@@ -84,14 +84,14 @@ jobs:
   Import-to-test:
     needs: [ export-from-dev ]
     uses: ./.github/workflows/import-to-test.yml
-    with:
+    #with:
       
-      solution_name: ${{vars.DEFAULTSOLUTION  }}
-      BUILD_ENVIRONMENT_URL: ${{ vars.BUILD_ENVIRONMENT_URL  }}
-      TEST_ENVIRONMENT_URL: ${{ vars.TEST_ENVIRONMENT_URL  }}
-      CLIENT_ID: ${{ vars.CLIENT_ID }}
-      TENANT_ID: ${{ vars.TENANT_ID  }}
+      #solution_name: ${{vars.DEFAULTSOLUTION  }}
+      #BUILD_ENVIRONMENT_URL: ${{ vars.BUILD_ENVIRONMENT_URL  }}
+      #TEST_ENVIRONMENT_URL: ${{ vars.TEST_ENVIRONMENT_URL  }}
+      #CLIENT_ID: ${{ vars.CLIENT_ID }}
+      #TENANT_ID: ${{ vars.TENANT_ID  }}
             
-    secrets:
-      envSecret: ${{ secrets.PowerPlatformSPN }}
+    #secrets:
+      #envSecret: ${{ secrets.PowerPlatformSPN }}
       
