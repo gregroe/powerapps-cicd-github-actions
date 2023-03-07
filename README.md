@@ -36,13 +36,13 @@ This resuable solution uses GitHub Actions to create a CICD Process for your  Po
  - copy client-secret
 - see https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces 
 - Github variables
- - BUILD_ENVIRONMENT_URL
- - CLIENT_ID
- - DEFAULTSOLUTION
- - DEVENVURL
- - PRODUCTION_ENVIRONMENT__URL
- - TENANT_ID
- - TEST_ENVIRONMENT_URL
+    - BUILD_ENVIRONMENT_URL
+    - CLIENT_ID
+    - DEFAULTSOLUTION
+    - DEVENVURL
+    - PRODUCTION_ENVIRONMENT__URL
+    - TENANT_ID
+    - TEST_ENVIRONMENT_URL
 - see https://docs.github.com/en/actions/learn-github-actions/variables
  
 ### Run Workflow  export-and-branch-solution-import-to-test
