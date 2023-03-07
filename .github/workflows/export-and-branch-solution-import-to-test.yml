@@ -37,6 +37,9 @@ name: export-and-branch-solution-import-to-test
 #   Select Actions  at top of menu
 #   Select export-and-branch-solution-import-to-test
 #   Run Workflow
+#
+# Test the app in the Test Environment
+# Create a pull request in the Dev Branch to check into MAIN
 
 on:
   workflow_dispatch:
