@@ -8,8 +8,17 @@ name: export-and-branch-solution-import-to-test
 # Create a pull request on the Development branch to check back into MAIN
 # to push to $PRODUCTION_ENVIRONMENT_URL,  Create a new Release, which will kick off the Release-Action
 #
-# Instructions:   (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start)
-# Create Required Dev,Test,Build,Prod environments    (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-required-environments)
+# Instructions:   
+#     (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start)
+# Create Required Dev,Test,Build,Prod environments    
+#     (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-required-environments)
+# Create Service Principal/AAD App Registraion.
+#     (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-the-service-principal-account-and-give-it-rights-to-the-environments-created)
+#     copy the TenantID, AppID,Client-Secret
+# Create an Application User in each of the Dev,Test,Build,Prod environments with the Service Principal
+#     (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#application-user-creation)
+# Create a Github Repository Secret Named "PowerPlatformSPN".   copy the client-secret
+#     (https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
 
 on:
   workflow_dispatch:
