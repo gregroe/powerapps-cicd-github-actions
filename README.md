@@ -4,7 +4,7 @@ This resuable solution uses GitHub Actions to create a CICD Process for your  Po
 
 ![architecture](architecture.png)
 
- ## Dev-Build-Test Process
+ ## Dev-Build-Test Process (1-2-3)
 - runs export-and-branch-solution-import-to-test Action
 - calls import-to-test Action
 - Automates deployment from Dev-Build-Test-Prod using a pull requests and releases
@@ -13,7 +13,7 @@ This resuable solution uses GitHub Actions to create a CICD Process for your  Po
 - uses a build server to build managed solutions
 - uses the pull request process to check the tested dev branch solution back into the Main Source Branch.
 
-## Release to Prod Process
+## Release to Prod Process (4)
 - Create a release
 - Calles release-solution-to-prod Action
 - builds a managed solution based on latest source in MAIN
