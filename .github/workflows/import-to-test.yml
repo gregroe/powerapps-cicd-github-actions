@@ -36,9 +36,9 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    #- uses: actions/checkout@v3
-    #  with:
-    #    lfs: true
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
 
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
@@ -83,9 +83,9 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    #- uses: actions/checkout@v3
-    #  with:
-    #    lfs: true
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
 
     - name: Fetch the ready to ship solution from GH artifact store
       uses: actions/download-artifact@v2
@@ -100,6 +100,6 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.envSecret }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-file: ${{ inputs.solution_shipping_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
+        solution-file: ${{ inputs.solution_release_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
         publish-changes: true
