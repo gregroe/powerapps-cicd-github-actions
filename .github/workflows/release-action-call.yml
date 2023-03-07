@@ -9,6 +9,6 @@ permissions:
   contents: write
 jobs:
   Release-solution:
-    uses: ./.github/workflows/release-solution-with-inputs.yml    
+    uses: ./.github/workflows/release-solution-to-prod.yml    
     secrets:
       envSecret: ${{ secrets.PowerPlatformSPN }}
