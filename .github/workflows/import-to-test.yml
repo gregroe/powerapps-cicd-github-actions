@@ -1,17 +1,11 @@
 name: input-solution-to-test-reusable
 #
-# 
-# 
 on:
   workflow_call:
     inputs: 
       #Do Not change these values
       #Values are set by the caller
-      #caller sample: release-action-call.ymnl
-      #solution_name:
-        #description: 'The solution name.'
-        #type: string
-        #default: ''       
+      
       solution_shipping_folder:
         description: 'folder name for staging the exported solution *do not change*'        
         type: string
@@ -28,23 +22,7 @@ on:
        description: 'folder where the released binaries are going to be hosted *do not change*'
        type: string
        default: out/release
-      #BUILD_ENVIRONMENT_URL:
-        #description: 'Build environment url.'
-        #type: string
-        #required: true      
-      #TEST_ENVIRONMENT_URL: 
-        #description: 'Test environment url.'
-        #type: string
-        #required: true
-      
-      #CLIENT_ID: 
-        #description: 'The client id'
-        #type: string
-        #required: true
-      #TENANT_ID: 
-        #description: 'The tenant id'
-        #type: string
-        #required: true
+
     secrets:
       envSecret:
         description: 'The secret value for authentication using SPN'
@@ -58,7 +36,7 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         lfs: true
 
@@ -105,7 +83,7 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         lfs: true
 
