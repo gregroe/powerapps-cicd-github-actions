@@ -92,6 +92,6 @@ jobs:
       #CLIENT_ID: ${{ vars.CLIENT_ID }}
       #TENANT_ID: ${{ vars.TENANT_ID  }}
             
-    #secrets:
-      #envSecret: ${{ secrets.PowerPlatformSPN }}
+    secrets:
+      envSecret: ${{ secrets.PowerPlatformSPN }}
       
