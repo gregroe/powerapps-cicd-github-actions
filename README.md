@@ -28,20 +28,21 @@ This resuable solution uses GitHub Actions to create a CICD Process for your  Po
 - copy the TenantID, AppID,Client-Secret
 ### Create an Application User in each of the Dev,Test,Build,Prod environments with the Service Principal
  - see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#application-user-creation
-### Create a Github Repository Secret and copy the client-secret
-- PowerPlatformSPN    copy client-secret
+
+
+
+### Create the following Github Environment Variables and Secrets and copy their respective values from your dataverse environment:
+- Github Secret for the client-secret  "PowerPlatformSPN"
+-- copy client-secret
 - see https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces 
-
-
-### Create the following Github Environment Variables and copy their respective values from your dataverse environment:
-
-- BUILD_ENVIRONMENT_URL
-- CLIENT_ID
-- DEFAULTSOLUTION
-- DEVENVURL
-- PRODUCTION_ENVIRONMENT__URL
-- TENANT_ID
-- TEST_ENVIRONMENT_URL
+-Github variables
+-- BUILD_ENVIRONMENT_URL
+-- CLIENT_ID
+-- DEFAULTSOLUTION
+-- DEVENVURL
+-- PRODUCTION_ENVIRONMENT__URL
+-- TENANT_ID
+-- TEST_ENVIRONMENT_URL
 - see https://docs.github.com/en/actions/learn-github-actions/variables
  
 ### Run Workflow  export-and-branch-solution-import-to-test
