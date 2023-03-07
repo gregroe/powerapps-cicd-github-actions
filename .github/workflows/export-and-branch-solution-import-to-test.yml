@@ -32,7 +32,11 @@ name: export-and-branch-solution-import-to-test
 #     PRODUCTION_ENVIRONMENT__URL
 #     TENANT_ID
 #     TEST_ENVIRONMENT_URL
-#     
+# 
+# Run Workflow  export-and-branch-solution-import-to-test
+#   Select Actions  at top of menu
+#   Select export-and-branch-solution-import-to-test
+#   Run Workflow
 
 on:
   workflow_dispatch:
