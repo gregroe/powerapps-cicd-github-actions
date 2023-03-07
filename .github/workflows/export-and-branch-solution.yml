@@ -10,7 +10,7 @@ on:
         description: 'name of the solution to worked on from Power Platform'
         required: true
         #default: DadAppSolution
-        default: ${{env.DEFAULTSOLUTION }}
+        default: ${{env.DEFAULTSOLUTION}}
        #Do Not change these values
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
@@ -34,13 +34,13 @@ env:
   TENANT_ID: ${{env.TENANT_ID }}
   
   #ENVIRONMENT_URL: 'https://greg.crm.dynamics.com'
-  ENVIRONMENT_URL: ${{env.DEVENVURL }}
+  ENVIRONMENT_URL: ${{env.DEVENVURL}}
   
   #BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
-  BUILD_ENVIRONMENT_URL: ${{env.BUILD_ENVIRONMENT_URL }}
+  BUILD_ENVIRONMENT_URL: ${{env.BUILD_ENVIRONMENT_URL}}
   
   #TEST_ENVIRONMENT_URL: 'https://test-alm.crm.dynamics.com'
-  TEST_ENVIRONMENT_URL: ${{env.TEST_ENVIRONMENT_URL }}
+  TEST_ENVIRONMENT_URL: ${{env.TEST_ENVIRONMENT_URL}}
   
 
 
