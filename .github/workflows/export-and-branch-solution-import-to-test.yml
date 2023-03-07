@@ -1,6 +1,6 @@
-name: export-and-branch-solution
+name: export-and-branch-solution-import-to-test
 # Export solution from ${{vars.DEVENVURL}} environment
-#  unpack it and prepare, commit and push a git branch with the changes then last import managed in to the ${{vars.TEST_ENVIRONMENT_URL}}
+# 
 
 on:
   workflow_dispatch:
