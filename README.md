@@ -20,18 +20,19 @@
 ## Instructions:   
     
 ### Create Required Dev,Test,Build,Prod environments    
-- (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-required-environments)
+- see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-required-environments
 ### Create Service Principal/AAD App Registraion.
--  (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-the-service-principal-account-and-give-it-rights-to-the-environments-created) 
+-  see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#create-the-service-principal-account-and-give-it-rights-to-the-environments-created 
 - copy the TenantID, AppID,Client-Secret
 ### Create an Application User in each of the Dev,Test,Build,Prod environments with the Service Principal
- - (https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#application-user-creation)
+ - see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#application-user-creation
 ### Create a Github Repository Secret and copy the client-secret
-- (https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
-- PowerPlatformSPN
+- - PowerPlatformSPN    copy client-secret
+- see https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces 
+
 
 ### Create the following Github Environment Variables and copy their respective values from your dataverse environment:
- - see (https://docs.github.com/en/actions/learn-github-actions/variables)
+
 - BUILD_ENVIRONMENT_URL
 - CLIENT_ID
 - DEFAULTSOLUTION
@@ -39,11 +40,13 @@
 - PRODUCTION_ENVIRONMENT__URL
 - TENANT_ID
 - TEST_ENVIRONMENT_URL
+- see https://docs.github.com/en/actions/learn-github-actions/variables
  
 ### Run Workflow  export-and-branch-solution-import-to-test
 - Select Actions  at top of menu
 - Select export-and-branch-solution-import-to-test
 - Run Workflow
+- see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-deploy#test-the-export-and-unpack-workflow
 
 ### Test the app in the Test Environment
 - test the app
@@ -53,3 +56,4 @@
 - Create a new Release. 
 - release-solution-to-prod action will run. which will export power apps solution source, send it to the Build environment, builds a managed solution
 - then inports to your production environemt.
+- see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-deploy#test-the-release-to-production-workflow
