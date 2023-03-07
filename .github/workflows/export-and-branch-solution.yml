@@ -9,7 +9,8 @@ on:
       solution_name:
         description: 'name of the solution to worked on from Power Platform'
         required: true
-        default: 'DadAppSolution'
+        #default:  ''
+        #default: 'DadAppSolution'
         #default: ${{vars.DEFAULTSOLUTION}}
        #Do Not change these values
       solution_exported_folder:
@@ -26,20 +27,10 @@ on:
        default: solutions/
 env:
 #edit your values here
-  
-  #CLIENT_ID: 'f622aab3-a544-4bfe-892e-692ee608d459'
-  CLIENT_ID: ${{vars.CLIENT_ID}}
-  
-  #TENANT_ID: '8b46d3b4-b4ac-4e33-8e31-1ee00f0d9aab'
+  CLIENT_ID: ${{vars.CLIENT_ID}} 
   TENANT_ID: ${{vars.TENANT_ID }}
-  
-  #ENVIRONMENT_URL: 'https://greg.crm.dynamics.com'
   ENVIRONMENT_URL: ${{vars.DEVENVURL}}
-  
-  #BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
   BUILD_ENVIRONMENT_URL: ${{vars.BUILD_ENVIRONMENT_URL}}
-  
-  #TEST_ENVIRONMENT_URL: 'https://test-alm.crm.dynamics.com'
   TEST_ENVIRONMENT_URL: ${{vars.TEST_ENVIRONMENT_URL}}
   
 
@@ -74,22 +65,27 @@ jobs:
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{env.TENANT_ID}}
-        solution-name: ${{ github.event.inputs.solution_name }}
+        #solution-name: ${{ github.event.inputs.solution_name }}
+        solution-name: ${{vars.DEFAULTSOLUTION}}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        #solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        #solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
         solution-type: 'Unmanaged'
         overwrite-files: true
 
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
       with:
-        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        #solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        #solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
+        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ vars.DEFAULTSOLUTION }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
 
@@ -98,12 +94,19 @@ jobs:
     uses: ./.github/workflows/import-to-test.yml
     with:
       #You can specify the solution name here
-      solution_name: DadAppSolution
+      #solution_name: DadAppSolution
       #Update your values here
-      BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
-      TEST_ENVIRONMENT_URL: 'https://test-alm.crm.dynamics.com'
-      CLIENT_ID: 'f622aab3-a544-4bfe-892e-692ee608d459'
-      TENANT_ID: '8b46d3b4-b4ac-4e33-8e31-1ee00f0d9aab'      
+      #BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
+      #TEST_ENVIRONMENT_URL: 'https://test-alm.crm.dynamics.com'
+      #CLIENT_ID: 'f622aab3-a544-4bfe-892e-692ee608d459'
+      #TENANT_ID: '8b46d3b4-b4ac-4e33-8e31-1ee00f0d9aab'
+      
+      solution_name: ${{vars.DEFAULTSOLUTION  }}
+      BUILD_ENVIRONMENT_URL: ${{ vars.BUILD_ENVIRONMENT_URL  }}
+      TEST_ENVIRONMENT_URL: ${{ vars.TEST_ENVIRONMENT_URL  }}
+      CLIENT_ID: ${{ vars.CLIENT_ID }}
+      TENANT_ID: ${{ vars.TENANT_ID  }}
+            
     secrets:
       envSecret: ${{ secrets.PowerPlatformSPN }}
       
