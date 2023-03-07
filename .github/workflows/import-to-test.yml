@@ -45,10 +45,10 @@ on:
         #description: 'The tenant id'
         #type: string
         #required: true
-    #secrets:
-      #envSecret:
-        #description: 'The secret value for authentication using SPN'
-        #required: true
+    secrets:
+      envSecret:
+        description: 'The secret value for authentication using SPN'
+        required: true
 
 jobs:
   convert-to-managed:
@@ -75,7 +75,7 @@ jobs:
       with:
         environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        client-secret: ${{ secrets.envSecret }}
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
@@ -86,7 +86,7 @@ jobs:
       with:
         environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatFormSPN }}
+        client-secret: ${{ secrets.envSecret }}
         tenant-id: ${{vars.TENANT_ID}}
         solution-name: ${{ vars.DEFAULTSOLUTION }}
         managed: true
@@ -119,7 +119,7 @@ jobs:
       with:
         environment-url: ${{vars.TEST_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        client-secret: ${{ secrets.envSecret }}
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: ${{ inputs.solution_release_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
