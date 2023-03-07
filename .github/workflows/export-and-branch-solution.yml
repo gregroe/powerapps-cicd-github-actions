@@ -5,14 +5,7 @@ name: export-and-branch-solution
 on:
   workflow_dispatch:
     inputs:
-      # Change this value
-      #solution_name:
-        #description: 'name of the solution to worked on from Power Platform'
-        #required: true
-        #default:  ''
-        #default: 'DadAppSolution'
-        #default: ${{vars.DEFAULTSOLUTION}}
-       #Do Not change these values
+
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
         required: true
@@ -25,15 +18,14 @@ on:
        description: 'folder name to be created and checked in *do not change*'
        required: true
        default: solutions/
-env:
-#edit your values here
-  CLIENT_ID: ${{vars.CLIENT_ID}} 
-  TENANT_ID: ${{vars.TENANT_ID }}
-  ENVIRONMENT_URL: ${{vars.DEVENVURL}}
-  BUILD_ENVIRONMENT_URL: ${{vars.BUILD_ENVIRONMENT_URL}}
-  TEST_ENVIRONMENT_URL: ${{vars.TEST_ENVIRONMENT_URL}}
-  
+#env:
 
+  #CLIENT_ID: ${{vars.CLIENT_ID}} 
+  #TENANT_ID: ${{vars.TENANT_ID }}
+  #ENVIRONMENT_URL: ${{vars.DEVENVURL}}
+  #BUILD_ENVIRONMENT_URL: ${{vars.BUILD_ENVIRONMENT_URL}}
+  #TEST_ENVIRONMENT_URL: ${{vars.TEST_ENVIRONMENT_URL}}
+  
 
 permissions:
   contents: write
@@ -93,13 +85,6 @@ jobs:
     needs: [ export-from-dev ]
     uses: ./.github/workflows/import-to-test.yml
     with:
-      #You can specify the solution name here
-      #solution_name: DadAppSolution
-      #Update your values here
-      #BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
-      #TEST_ENVIRONMENT_URL: 'https://test-alm.crm.dynamics.com'
-      #CLIENT_ID: 'f622aab3-a544-4bfe-892e-692ee608d459'
-      #TENANT_ID: '8b46d3b4-b4ac-4e33-8e31-1ee00f0d9aab'
       
       solution_name: ${{vars.DEFAULTSOLUTION  }}
       BUILD_ENVIRONMENT_URL: ${{ vars.BUILD_ENVIRONMENT_URL  }}
