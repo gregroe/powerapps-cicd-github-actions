@@ -40,6 +40,11 @@ name: export-and-branch-solution-import-to-test
 #
 # Test the app in the Test Environment
 # Create a pull request in the Dev Branch to check into MAIN
+#
+# To Release to Production:
+# Create a new Release. 
+# release-solution-to-prod action will run. which will export power apps solution source, send it to the Build environment, builds a managed solution
+# then inports to your production environemt.
 
 on:
   workflow_dispatch:
