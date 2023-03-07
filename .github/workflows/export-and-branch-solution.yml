@@ -10,7 +10,7 @@ on:
         description: 'name of the solution to worked on from Power Platform'
         required: true
         #default: DadAppSolution
-        default: ${{ vars.DEFAULTSOLUTION }}
+        default: ${{vars.DEFAULTSOLUTION}}
        #Do Not change these values
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
