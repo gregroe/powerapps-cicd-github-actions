@@ -27,7 +27,7 @@
 ### Create an Application User in each of the Dev,Test,Build,Prod environments with the Service Principal
  - see https://learn.microsoft.com/en-us/power-platform/alm/tutorials/github-actions-start#application-user-creation
 ### Create a Github Repository Secret and copy the client-secret
-- - PowerPlatformSPN    copy client-secret
+- PowerPlatformSPN    copy client-secret
 - see https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces 
 
 
