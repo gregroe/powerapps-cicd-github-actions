@@ -8,15 +8,7 @@ on:
 permissions:
   contents: write
 jobs:
-  Release-solution-DadApp:
-    uses: ./.github/workflows/release-solution-with-inputs.yml
-    #with:
-      #You can specify the solution name here
-      #solution_name: DadAppSolution
-      #Update your values here
-      #BUILD_ENVIRONMENT_URL: 'https://buildenv.crm.dynamics.com'
-      #PRODUCTION_ENVIRONMENT_URL: 'https://prod-alm.crm.dynamics.com'
-      #CLIENT_ID: 'f622aab3-a544-4bfe-892e-692ee608d459'
-      #TENANT_ID: '8b46d3b4-b4ac-4e33-8e31-1ee00f0d9aab'      
+  Release-solution:
+    uses: ./.github/workflows/release-solution-with-inputs.yml    
     secrets:
       envSecret: ${{ secrets.PowerPlatformSPN }}
