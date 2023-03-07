@@ -7,11 +7,7 @@ on:
     inputs: 
       #Do Not change these values
       #Values are set by the caller
-      #caller sample: release-action-call.ymnl
-      #solution_name:
-        #description: 'The solution name.'
-        #type: string
-        #default: 'DadAppSolution'       
+      #caller sample: release-action-call.ymnl   
         
       solution_shipping_folder:
         description: 'folder name for staging the exported solution *do not change*'        
@@ -28,24 +24,7 @@ on:
       solution_release_folder:
        description: 'folder where the released binaries are going to be hosted *do not change*'
        type: string
-       default: out/release
-       
-      #BUILD_ENVIRONMENT_URL:
-        #description: 'Build environment url.'
-        #type: string
-        #required: true      
-      #PRODUCTION_ENVIRONMENT_URL: 
-        #description: 'Production environment url.'
-        #type: string
-        #required: true
-      #CLIENT_ID: 
-        #description: 'The client id'
-        #type: string
-        #required: true
-      #TENANT_ID: 
-        #description: 'The tenant id'
-        #type: string
-        #required: true
+       default: out/release       
         
     secrets:
       envSecret:
