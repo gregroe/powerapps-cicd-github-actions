@@ -33,8 +33,9 @@ This resuable solution uses GitHub Actions to create a CICD Process for your  Po
 
 ### Create the following Github Environment Variables and Secrets and copy their respective values from your dataverse environment:
 - Github Secret for the client-secret  "PowerPlatformSPN"
- - copy client-secret
-- see https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces 
+   - copy client-secret
+- see https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces
+ 
 - Github variables
     - BUILD_ENVIRONMENT_URL
     - CLIENT_ID
