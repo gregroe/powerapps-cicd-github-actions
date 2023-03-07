@@ -1,6 +1,6 @@
 name: export-and-branch-solution
-# Export solution from DEV environment
-#  unpack it and prepare, commit and push a git branch with the changes
+# Export solution from ${{vars.DEVENVURL}} environment
+#  unpack it and prepare, commit and push a git branch with the changes then last import managed in to the ${{vars.TEST_ENVIRONMENT_URL}}
 
 on:
   workflow_dispatch:
@@ -18,15 +18,7 @@ on:
        description: 'folder name to be created and checked in *do not change*'
        required: true
        default: solutions/
-#env:
-
-  #CLIENT_ID: ${{vars.CLIENT_ID}} 
-  #TENANT_ID: ${{vars.TENANT_ID }}
-  #ENVIRONMENT_URL: ${{vars.DEVENVURL}}
-  #BUILD_ENVIRONMENT_URL: ${{vars.BUILD_ENVIRONMENT_URL}}
-  #TEST_ENVIRONMENT_URL: ${{vars.TEST_ENVIRONMENT_URL}}
   
-
 permissions:
   contents: write
 jobs:
@@ -49,7 +41,6 @@ jobs:
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
 
-
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
@@ -57,15 +48,12 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        #solution-name: ${{ github.event.inputs.solution_name }}
         solution-name: ${{vars.DEFAULTSOLUTION}}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        #solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        #solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
         solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
         solution-type: 'Unmanaged'
@@ -74,8 +62,6 @@ jobs:
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
       with:
-        #solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        #solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ vars.DEFAULTSOLUTION }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -83,15 +69,7 @@ jobs:
 
   Import-to-test:
     needs: [ export-from-dev ]
-    uses: ./.github/workflows/import-to-test.yml
-    #with:
-      
-      #solution_name: ${{vars.DEFAULTSOLUTION  }}
-      #BUILD_ENVIRONMENT_URL: ${{ vars.BUILD_ENVIRONMENT_URL  }}
-      #TEST_ENVIRONMENT_URL: ${{ vars.TEST_ENVIRONMENT_URL  }}
-      #CLIENT_ID: ${{ vars.CLIENT_ID }}
-      #TENANT_ID: ${{ vars.TENANT_ID  }}
-            
+    uses: ./.github/workflows/import-to-test.yml     
     secrets:
       envSecret: ${{ secrets.PowerPlatformSPN }}
       
