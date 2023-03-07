@@ -86,7 +86,7 @@ jobs:
       with:
         environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }} 
+        client-secret: ${{ secrets.PowerPlatFormSPN }}
         tenant-id: ${{vars.TENANT_ID}}
         solution-name: ${{ vars.DEFAULTSOLUTION }}
         managed: true
