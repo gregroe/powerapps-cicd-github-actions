@@ -1,15 +1,18 @@
 # Power Apps CICD with Github Actions
 
 
- ## Dev-Build-Test
+ ## Dev-Build-Test Process
+- runs export-and-branch-solution-import-to-test Action
+- calls import-to-test Action
 - Automates deployment from Dev-Build-Test-Prod using a pull requests and releases
 - Exports your Power Apps Solution  from your Development dataverse Environment, creats a dev branch based off of Main. Checks unpacked solution in to dev branch
 - Imports a managed copy of your solution to Test
 - uses a build server to build managed solutions
 - uses the pull request process to check the tested dev branch solution back into the Main Source Branch.
 
-## Release to Prod
+## Release to Prod Process
 - Create a release
+- Calles release-solution-to-prod Action
 - builds a managed solution based on latest source in MAIN
 - Deploys to Production
 
