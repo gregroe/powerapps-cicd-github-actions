@@ -1,7 +1,11 @@
 name: release-solution-to-prod
-# Reusable workflow
-# convert solution to managed (using a build PowerPlatform environment for the conversion)
-# upload the solution to the GitHub artifacts and deploy to the PROD environment
+# Creates a Release. Takes the latest power apps solution in the MAIN branch, creates a managed solution, imports it to Production
+#
+# Instructions:
+# Create a new Release. 
+# release-solution-to-prod action will run. which will export power apps solution source, send it to the Build environment, builds a managed solution
+# then inports to your production environemt.
+# 
 on:
   workflow_call:
     inputs: 
