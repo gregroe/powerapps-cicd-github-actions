@@ -75,7 +75,7 @@ jobs:
       with:
         environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        client-secret: ${{secrets.POWERPLATFORMSPN}}
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
@@ -86,7 +86,7 @@ jobs:
       with:
         environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }} 
+        client-secret: ${{secrets.POWERPLATFORMSPN}} 
         tenant-id: ${{vars.TENANT_ID}}
         solution-name: ${{ vars.DEFAULTSOLUTION }}
         managed: true
