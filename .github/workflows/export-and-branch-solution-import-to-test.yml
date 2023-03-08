@@ -120,6 +120,7 @@ jobs:
 
 
   import-to-test:
+    needs: [ export-from-dev ]
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
