@@ -132,10 +132,18 @@ jobs:
         ref: DadAppSolution
         lfs: true
 
-    - name: who-am-i action
+    - name: who-am-i action Test env
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
         environment-url: ${{vars.TEST_ENVIRONMENT_URL}}
+        app-id: ${{vars.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{vars.TENANT_ID}}
+              
+    - name: who-am-i action Build env
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
@@ -145,7 +153,30 @@ jobs:
       with:
         solution-folder: solutions/${{vars.DEFAULTSOLUTION}}
         solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
-        solution-type: Managed
+        solution-type: Unmanaged
+      
+    - name: Import solution as unmanaged to build env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
+        app-id: ${{vars.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{vars.TENANT_ID}}
+        solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
+        force-overwrite: true
+        publish-changes: true     
+        
+    - name: Export solution from Build env as managed
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{vars.BUILD_ENVIRONMENT_URL}
+        app-id: ${{vars.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{vars.TENANT_ID}}
+        solution-name: ${{vars.DEFAULTSOLUTION}}
+        managed: true
+        solution-output-file: out/ship/${{vars.DEFAULTSOLUTION}}.zip
+        
            
     - name: Import solution to test env
       uses: microsoft/powerplatform-actions/import-solution@v0
@@ -154,7 +185,7 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-file: out/solutions/${{ vars.DEFAULTSOLUTION }}.zip
+        solution-file: out/ship/${{ vars.DEFAULTSOLUTION }}.zip
         #convert-to-managed: true
         force-overwrite: true
         publish-changes: true  
