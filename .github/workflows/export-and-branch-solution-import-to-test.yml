@@ -1,5 +1,5 @@
 name: export-and-branch-solution-import-to-test
-# This Action:
+# This Workflow:
 # Exports Power Apps $DEFAULTSOLUTIOfrom $DEVENVURL dataverse dev environment
 # Create a development branch based on Main
 # Checks unpacked solution in to dev branch
@@ -48,20 +48,6 @@ name: export-and-branch-solution-import-to-test
 
 on:
   workflow_dispatch:
-    
-    #inputs:
-      #solution_exported_folder:
-        #description: 'folder name for staging the exported solution *do not change*'
-        #required: true
-        #default: out/exported/
-      #solution_folder:
-        #description: 'staging the unpacked solution folder before check-in *do not change*'
-        #required: true
-        #default: out/solutions/
-      #solution_target_folder: 
-       #description: 'folder name to be created and checked in *do not change*'
-       #required: true
-       #default: solutions/
   
 permissions:
   contents: write
@@ -92,29 +78,21 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-name: ${{vars.DEFAULTSOLUTION}}
-        #solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip     
+        solution-name: ${{vars.DEFAULTSOLUTION}} 
         solution-output-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip 
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        #solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
-        #solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
-        
         solution-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip
         solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
         solution-type: 'Unmanaged'
         overwrite-files: true
         
-
       
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
       with:
-        #solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
-        #solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ vars.DEFAULTSOLUTION }}
-        
         solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
         solution-target-folder: solutions/${{ vars.DEFAULTSOLUTION }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -134,7 +112,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: DadAppSolution
+        #ref: DadAppSolution
+        ref: ${{vars.DEFAULTSOLUTION}}
         lfs: true
 
     - name: who-am-i action Test env
@@ -191,6 +170,5 @@ jobs:
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: out/ship/${{ vars.DEFAULTSOLUTION }}.zip
-        #convert-to-managed: true
         force-overwrite: true
         publish-changes: true  
