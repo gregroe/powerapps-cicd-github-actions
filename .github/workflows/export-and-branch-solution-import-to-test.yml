@@ -102,7 +102,7 @@ jobs:
 
 
 
-  import-to-test:
+  build-managed-solution:
     needs: [ export-from-dev ]
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
@@ -112,18 +112,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        #ref: DadAppSolution
         ref: ${{vars.DEFAULTSOLUTION}}
         lfs: true
-
-    - name: who-am-i action Test env
-      uses: microsoft/powerplatform-actions/who-am-i@v0
-      with:
-        environment-url: ${{vars.TEST_ENVIRONMENT_URL}}
-        app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
-        tenant-id: ${{vars.TENANT_ID}}
-              
+          
     - name: who-am-i action Build env
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
@@ -161,7 +152,27 @@ jobs:
         managed: true
         solution-output-file: out/ship/${{vars.DEFAULTSOLUTION}}.zip
         
-           
+  import-to-test:
+    needs: [ build-managed-solution ]
+    runs-on: windows-latest
+    # or you can say runs-on: ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{vars.DEFAULTSOLUTION}}
+        lfs: true
+
+    - name: who-am-i action Test env
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{vars.TEST_ENVIRONMENT_URL}}
+        app-id: ${{vars.CLIENT_ID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{vars.TENANT_ID}}
+                       
     - name: Import solution to test env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
