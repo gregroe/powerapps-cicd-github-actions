@@ -139,7 +139,8 @@ jobs:
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
         force-overwrite: true
-        publish-changes: true     
+        publish-changes: true
+        skip-dependency-check: true
         
     - name: Export solution from Build env as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
@@ -195,4 +196,5 @@ jobs:
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: out/ship/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
-        publish-changes: true  
+        publish-changes: true
+        skip-dependency-check: true
