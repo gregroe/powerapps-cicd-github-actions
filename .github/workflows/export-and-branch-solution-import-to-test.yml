@@ -101,7 +101,7 @@ jobs:
       with:
         environment-url: ${{vars.TEST_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
         solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         convert-to-managed: true
