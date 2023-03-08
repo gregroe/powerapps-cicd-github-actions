@@ -94,6 +94,19 @@ jobs:
         tenant-id: ${{vars.TENANT_ID}}
         solution-name: ${{vars.DEFAULTSOLUTION}}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
+        
+        
+    - name: Import solution to test env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{vars.TEST_ENVIRONMENT_URL}}
+        app-id: ${{vars.CLIENT_ID}}
+        client-secret: ${{ secrets.envSecret }}
+        tenant-id: ${{vars.TENANT_ID}}
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
+        convert-to-managed: true
+        force-overwrite: true
+        publish-changes: true  
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
@@ -117,9 +130,9 @@ jobs:
         clobber-branch: true
         allow-empty-commit: true
 
-  Import-to-test:
-    needs: [ export-from-dev ]
-    uses: ./.github/workflows/import-to-test.yml     
-    secrets:
-      envSecret: ${{ secrets.PowerPlatformSPN }}
+  #Import-to-test:
+  #  needs: [ export-from-dev ]
+  #  uses: ./.github/workflows/import-to-test.yml     
+  #  secrets:
+  #    envSecret: ${{ secrets.PowerPlatformSPN }}
       
