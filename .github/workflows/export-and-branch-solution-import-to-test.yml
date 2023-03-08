@@ -169,7 +169,7 @@ jobs:
     - name: Export solution from Build env as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{vars.BUILD_ENVIRONMENT_URL}
+        environment-url: ${{vars.BUILD_ENVIRONMENT_URL}}
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
