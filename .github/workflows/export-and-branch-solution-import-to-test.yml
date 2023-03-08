@@ -151,6 +151,12 @@ jobs:
         solution-name: ${{vars.DEFAULTSOLUTION}}
         managed: true
         solution-output-file: out/ship/${{vars.DEFAULTSOLUTION}}.zip
+           
+    - name: Upload the ready to ship solution to GH artifact store
+      uses: actions/upload-artifact@v2
+      with:
+        name: managedSolutions
+        path: out/ship/${{vars.DEFAULTSOLUTION}}.zip
         
   import-to-test:
     needs: [ build-managed-solution ]
@@ -172,6 +178,13 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
+        
+        
+    - name: Fetch the ready to ship solution from GH artifact store
+      uses: actions/download-artifact@v2
+      with:
+        name: managedSolutions
+        path: out/ship/
                        
     - name: Import solution to test env
       uses: microsoft/powerplatform-actions/import-solution@v0
