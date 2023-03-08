@@ -64,6 +64,7 @@ jobs:
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
         force-overwrite: true
         publish-changes: true
+        skip-dependency-check: true
 
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
@@ -98,6 +99,7 @@ jobs:
       with:
         name: managedSolutions
         path: ${{ inputs.solution_release_folder}}
+        
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
@@ -108,3 +110,4 @@ jobs:
         solution-file: ${{ inputs.solution_release_folder}}/${{ vars.DEFAULTSOLUTION}}.zip
         force-overwrite: true
         publish-changes: true
+        skip-dependency-check: true
