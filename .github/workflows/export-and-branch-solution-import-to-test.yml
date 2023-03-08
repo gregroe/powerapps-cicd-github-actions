@@ -102,9 +102,10 @@ jobs:
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ vars.DEFAULTSOLUTION }}
         solution-type: 'Unmanaged'
         overwrite-files: true
-    - name: git delete current dev branch
-      continue-on-error: true
-      run: git branch -D ${{ vars.DEFAULTSOLUTION }}
+        
+    #- name: git delete current dev branch
+    #  continue-on-error: true
+    #  run: git branch -D ${{ vars.DEFAULTSOLUTION }}
       
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
@@ -113,6 +114,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ vars.DEFAULTSOLUTION }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         branch-name: ${{ vars.DEFAULTSOLUTION }}
+        clobber-branch: true
         allow-empty-commit: true
 
   Import-to-test:
