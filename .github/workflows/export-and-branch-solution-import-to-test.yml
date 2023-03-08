@@ -139,6 +139,13 @@ jobs:
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
           
+    - name: Pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v0
+      with:
+        solution-folder: solutions/${{vars.DEFAULTSOLUTION}}
+        solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
+        solution-type: Managed
+           
     - name: Import solution to test env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
@@ -146,7 +153,7 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ vars.DEFAULTSOLUTION }}.zip
-        convert-to-managed: true
+        solution-file: out/solutions/${{ vars.DEFAULTSOLUTION }}.zip
+        #convert-to-managed: true
         force-overwrite: true
         publish-changes: true  
