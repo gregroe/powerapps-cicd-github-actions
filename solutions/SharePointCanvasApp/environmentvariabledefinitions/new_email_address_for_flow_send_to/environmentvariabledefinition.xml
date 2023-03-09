@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="new_email_address_for_flow_send_to">
+  <defaultvalue>user1@artmsf.com</defaultvalue>
+  <displayname default="email_address_for_flow_send_to">
+    <label description="email_address_for_flow_send_to" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.2</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>
