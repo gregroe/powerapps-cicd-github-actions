@@ -49,7 +49,7 @@ name: export-and-branch-solution-import-to-test
 on:
   workflow_dispatch:
     inputs:
-      default_solution_name:
+      solution_name:
         description: 'the solution you will be exporting from your dev environment'
         type: string
         default: DadAppSolution
