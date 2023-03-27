@@ -48,11 +48,11 @@ name: export-and-branch-solution-import-to-test
 
 on:
   workflow_dispatch:
-    inputs:  #gjr
-      solution_name: #gjr
-        description: 'Solution to Import:'  #gjr
-        type: string   #gjr
-        default: DadAppSolution  #gjr
+    inputs:                                                                                                           #gjr
+      solution_name:                                                                                                  #gjr
+        description: 'Solution to Import:'                                                                            #gjr
+        type: string                                                                                                  #gjr
+        default: DadAppSolution                                                                                       #gjr
   
 permissions:
   contents: write
@@ -83,14 +83,17 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-name: ${{vars.DEFAULTSOLUTION}} 
+        #gjr solution-name: ${{vars.DEFAULTSOLUTION}}                                                              
+        solution-name: ${{inputs.solution_name}}                                                                     #gjr
         solution-output-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip 
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        solution-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip
-        solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
+        #gjr solution-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip
+        #gjr solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
+        solution-file: out/exported/${{ inputs.soluiton_name}}.zip                                                   #gjr
+        solution-folder: out/solutions/${{ inputs.solution_name}}                                                    #gjr
         solution-type: 'Unmanaged'
         overwrite-files: true
         
@@ -98,10 +101,13 @@ jobs:
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
       with:
-        solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
-        solution-target-folder: solutions/${{ vars.DEFAULTSOLUTION }}
+        #gjr solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
+        #gjr solution-target-folder: solutions/${{ vars.DEFAULTSOLUTION }}
+        solution-folder: out/solutions/${{ inputs.solution_name }}                                                  #gjr
+        solution-target-folder: solutions/${{ inputs.solution_name }}                                               #gjr
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        branch-name: ${{ vars.DEFAULTSOLUTION }}
+        #gjr branch-name: ${{ vars.DEFAULTSOLUTION }}
+        branch-name: ${{ inputs.solution_name }}                                                                    #gjr
         clobber-branch: true
         allow-empty-commit: true
 
@@ -117,7 +123,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: ${{vars.DEFAULTSOLUTION}}
+        #gjr ref: ${{vars.DEFAULTSOLUTION}}
+        ref: ${{inputs.solution_name}}                                                                              #gjr
         lfs: true
           
     - name: who-am-i action Build env
@@ -131,8 +138,10 @@ jobs:
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
-        solution-folder: solutions/${{vars.DEFAULTSOLUTION}}
-        solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
+        #gjr solution-folder: solutions/${{vars.DEFAULTSOLUTION}}
+        #gjr solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
+        solution-folder: solutions/${{inputs.solution_name}}                                                        #gjr
+        solution-file: out/solutions/${{inputs.solution_name}}.zip                                                  #gjr
         solution-type: Unmanaged
       
     - name: Import solution as unmanaged to build env
@@ -142,7 +151,8 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
+        #gjr solution-file: out/solutions/${{vars.DEFAULTSOLUTION}}.zip
+        solution-file: out/solutions/${{inputs.solution_name}}.zip                                                 #gjr
         force-overwrite: true
         publish-changes: true
         skip-dependency-check: true
@@ -154,15 +164,18 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-name: ${{vars.DEFAULTSOLUTION}}
+        #gjr solution-name: ${{vars.DEFAULTSOLUTION}}
+        solution-name: ${{inputs.solution_name}}                                                                  #gjr
         managed: true
-        solution-output-file: out/ship/${{vars.DEFAULTSOLUTION}}.zip
+        #gjr solution-output-file: out/ship/${{vars.DEFAULTSOLUTION}}.zip
+        solution-output-file: out/ship/${{inputs.solution_name}}.zip                                              #gjr
            
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
       with:
         name: managedSolutions
-        path: out/ship/${{vars.DEFAULTSOLUTION}}.zip
+        #gjr path: out/ship/${{vars.DEFAULTSOLUTION}}.zip
+        path: out/ship/${{inputs.solution_name}}.zip                                                              #gjr
         
   import-to-test:
     needs: [ build-managed-solution ]
@@ -174,7 +187,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: ${{vars.DEFAULTSOLUTION}}
+        #gjr ref: ${{vars.DEFAULTSOLUTION}}
+        ref: ${{inputs.solution_name}}                                                                          #gjr
         lfs: true
 
     - name: who-am-i action Test env
@@ -199,7 +213,8 @@ jobs:
         app-id: ${{vars.CLIENT_ID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANT_ID}}
-        solution-file: out/ship/${{ vars.DEFAULTSOLUTION }}.zip
+        #gjr solution-file: out/ship/${{ vars.DEFAULTSOLUTION }}.zip
+        solution-file: out/ship/${{ inputs.solution_name }}.zip                                           #gjr
         force-overwrite: true
         publish-changes: true
         skip-dependency-check: true
