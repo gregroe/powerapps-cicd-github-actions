@@ -5,11 +5,7 @@ name: Release action
 on:
   release:
       types: [created] 
-      inputs:                                                                                                           #gjr
-        solution_name:                                                                                                  #gjr
-          description: 'Solution to Release:'                                                                           #gjr
-          type: string                                                                                                  #gjr
-          default: DadAppSolution                                                                                       #gjr
+
 permissions:
   contents: write
 jobs:
