@@ -85,7 +85,8 @@ jobs:
         tenant-id: ${{vars.TENANT_ID}}
         #gjr solution-name: ${{vars.DEFAULTSOLUTION}}                                                              
         solution-name: ${{inputs.solution_name}}                                                                     #gjr
-        solution-output-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip 
+        #grj solution-output-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip 
+        solution-output-file: out/exported/${{ inputs.solution_name }}.zip                                          #gjr
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
