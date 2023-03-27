@@ -48,11 +48,11 @@ name: export-and-branch-solution-import-to-test
 
 on:
   workflow_dispatch:
-    inputs:
-      solution_name:
-        description: 'Solution to Import'
-        type: string
-        default: DadAppSolution
+    inputs:  #gjr
+      solution_name: #gjr
+        description: 'Solution to Import:'  #gjr
+        type: string   #gjr
+        default: DadAppSolution  #gjr
   
 permissions:
   contents: write
