@@ -93,7 +93,7 @@ jobs:
       with:
         #gjr solution-file: out/exported/${{ vars.DEFAULTSOLUTION }}.zip
         #gjr solution-folder: out/solutions/${{ vars.DEFAULTSOLUTION }}
-        solution-file: out/exported/${{ inputs.soluiton_name}}.zip                                                   #gjr
+        solution-file: out/exported/${{ inputs.solution_name}}.zip                                                   #gjr
         solution-folder: out/solutions/${{ inputs.solution_name}}                                                    #gjr
         solution-type: 'Unmanaged'
         overwrite-files: true
