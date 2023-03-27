@@ -50,7 +50,7 @@ on:
   workflow_dispatch:
     inputs:
       solution_name:
-        description: 'the solution you will be exporting from your dev environment'
+        description: 'Solution to Import'
         type: string
         default: DadAppSolution
   
